@@ -27,6 +27,9 @@ exit
 REM Start First File System Scan
 :firstsave
 dir /b /s "%scandir%">>save.inf
+FOR /F "tokens=1,* delims=: " %%j in (save.inf) do (
+xcopy /y /i "%%j:%%k" "%backupdir%" & echo Backed Up File: "%%j:%%k">>backup.log
+)
 exit
 
 :exit
